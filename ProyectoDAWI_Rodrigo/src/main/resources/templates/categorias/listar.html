@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Categorías</title>
+    <link rel="stylesheet" href="/listarcategoria.css"> <!-- Link al archivo de estilos -->
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/clientes">Clientes</a></li>
+            <li><a href="/productos">Productos</a></li>
+            <li><a href="/categorias">Categorías</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h1>Listado de Categorías</h1>
+
+    <!-- Corregimos el enlace a la ruta correcta -->
+    <a href="/categorias/nuevo">
+        <button class="btn registrar">Registrar Categoría</button>
+    </a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.idCategoria}"></td>
+            <td th:text="${categoria.nombre}"></td>
+            <td th:text="${categoria.descripcion}"></td>
+            <td>
+                <a th:href="@{/categorias/editar/{id}(id=${categoria.idCategoria})}" class="btn editar">Editar</a>
+                <a th:href="@{/categorias/eliminar/{id}(id=${categoria.idCategoria})}" class="btn eliminar">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>&copy; 2024 Proyecto de Rodrigo Wismann Caceres</p>
+</footer>
+
+</body>
+</html>
